@@ -11,6 +11,8 @@
     "add": "Add",
     "studentNum": "Student number",
     "studentNum.placeholder": "Enter your student number",
+    "studentEmail": "Email address",
+    "studentEmail.placeholder": "Enter your email address",
 
     "gtoken": "Classroom Entry Token (For students)",
     "itoken": "Classroom Management Token (Instructor ONLY!)",
@@ -19,7 +21,7 @@
     "detail.1.2": "They can be .zip file or Github URL.",
     "detail.2.1": "Submissions are graded with static analysis, scoring criteria, and test cases.",
     "detail.2.2": "",
-    "detail.3.1": "Offer your feedback", 
+    "detail.3.1": "Offer your feedback",
     "detail.3.2": "to explain the results.",
     "detail.4.1": "Provide a graph that",
     "detail.4.2": "visualizes the OOP concept",
@@ -130,6 +132,7 @@
     "result.score.compile": "Compilation : There is a problem with the compilation.",
     "result.score.testcase": "Test case : Wrong. Make test cases yourself and check them again.",
     "result.score.testcase.failed": "Failed test case #",
+    "result.score.checksum.failed": "Checksum error #",
     "result.score.package": "Package : Package path is not valid.",
     "result.score.customexc": "Custom Exception Class : The class does not exist or has not been used.",
     "result.score.customstr": "Custom Data Class : The class does not exist or has not been used.",
@@ -140,6 +143,7 @@
     "result.score.thread": "Thread : thread does not appear to be implemented.",
     "result.score.javadoc": "Javadoc : Javadoc is insufficient or may not have been created.",
     "result.score.encap": "Encapsulation : The class without encapsulation was found.",
+    "result.detail": "Failed test case details",
 
     "begin.test token": "▶︎ Check the test case",
     "entrance.test title": "Test case",

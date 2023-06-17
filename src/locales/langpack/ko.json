@@ -11,6 +11,8 @@
     "add": "추가",
     "studentNum": "학번",
     "studentNum.placeholder": "학번을 입력하세요.",
+    "studentEmail": "이메일",
+    "studentEmail.placeholder": "이메일 주소를 입력하세요.",
 
     "gtoken": "클래스룸 입장 토큰 (제출용)",
     "itoken": "클래스룸 관리 토큰 (채점자용)",
@@ -19,7 +21,7 @@
     "detail.1.2": "제출 방식은 .zip 또는 Github URL이 될 수 있습니다.",
     "detail.2.1": "정적 분석 및 채점 기준,",
     "detail.2.2": "여러 테스트 케이스로 제출된 과제를 채점합니다.",
-    "detail.3.1": "피드백을 제공해", 
+    "detail.3.1": "피드백을 제공해",
     "detail.3.2": "채점 결과를 설명합니다.",
     "detail.4.1": "제출물의 객체 지향 개념을",
     "detail.4.2": "시각화한 그래프를 제공합니다.",
@@ -69,7 +71,7 @@
     "dialog.update.3": "\"✏️ Edit\" 버튼을 클릭하여 각 항목에 대한 채점 기준을 수정하세요.︎",
 
     "file transfer": "선택된 파일이 없습니다.",
-    
+
     "policy.point": "총점",
     "policy.level": "피드백 단계",
     "policy.count.methods": "최소 메서드 개수",
@@ -130,6 +132,7 @@
     "result.score.compile": "컴파일 : 컴파일에 문제가 있습니다.",
     "result.score.testcase": "테스트 케이스 : 틀렸습니다. 여러 테스트 케이스를 만들어 다시 확인해보세요.",
     "result.score.testcase.failed": "실패한 테스트 케이스 #",
+    "result.score.checksum.failed": "체크섬 오류 #",
     "result.score.package": "패키지 : 패키지 경로가 올바르지 않습니다.",
     "result.score.customexc": "사용자 지정 예외처리 클래스 : 해당 클래스가 없거나 사용되지 않았습니다.",
     "result.score.customstr": "사용자 지정 자료구조 클래스 : 해당 클래스가 없거나 사용되지 않았습니다.",
@@ -140,6 +143,7 @@
     "result.score.thread": "스레드 : 스레드가 구현되지 않은 것 같습니다.",
     "result.score.javadoc": "자바독 : 자바독이 부족하거나, 작성되지 않은 것 같습니다.",
     "result.score.encap": "캡슐화 : 캡슐화가 적용되지 않은 클래스가 발견되었습니다.",
+    "result.detail": "실패한 테스트 케이스 상세 정보",
 
     "begin.test token": "▶︎ 테스트 케이스 확인하기",
     "entrance.test title": "테스트 케이스",

@@ -169,8 +169,11 @@ function EntranceInstructor (props: RouteComponentProps) {
                 value={value || ""}
                 onChange={handleChange}
                 onKeyPress={e => {
-                    if (e.key === 'Enter' && value.length > 0) 
-                        props.history.push(`${props.match.url}/${value}`)
+                    if (e.key === 'Enter' && value.length > 0)
+                        props.history.push({
+                            pathname: `${props.match.url}/results`,
+                            state: value
+                        })
                     }}
                 label={t('input.')}
                 className={classes.textField}
@@ -179,11 +182,19 @@ function EntranceInstructor (props: RouteComponentProps) {
                         input: classes.resize,
                     },
                     endAdornment: (
-                        <Link to={`${props.match.url}/${value}`}>
-                            <IconButton aria-label="token inputs" edge="end">
-                                <SearchIcon />
-                            </IconButton>
-                        </Link>
+                        <IconButton
+                            aria-label="token inputs"
+                            edge="end"
+                            onClick={e => {
+                                if (value.length > 0)
+                                    props.history.push({
+                                        pathname: `${props.match.url}/results`,
+                                        state: value
+                                    })
+                            }}
+                        >
+                            <SearchIcon />
+                        </IconButton>
                     )
                 }} />
         </StarterMajorLayout>

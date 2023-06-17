@@ -180,8 +180,7 @@ export default function SelectCond(props: PolicyProps) {
     const handleSubmit = async () => {
         setLoading(true);
 
-        //await axios.post("http://isel.lifove.net/api/token2.0/save", JSON.stringify(policy, null, 2), {
-        axios.post("/api/token2.0/save", JSON.stringify(policy, null, 2), {
+        await axios.post("http://isel.lifove.net/api/token2.0/save", JSON.stringify(policy, null, 2), {
             headers: {"Content-Type": 'application/json'}
         }).then((res) => {
             setOpen(false);

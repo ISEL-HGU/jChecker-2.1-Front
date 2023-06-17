@@ -18,19 +18,19 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/jchecker2.0" component={Index} />
-        <Route exact path="/jchecker2.0/classes" component={EntranceClass} />
-        <Route exact path="/jchecker2.0/classes/:token" component={SectionClass} />
-        <Route exact path="/jchecker2.0/classes/:token/success" component={ResultProcess} />
-        <Route exact path="/jchecker2.0/classes/:token/success/details" component={ResultDetail} />
-        <Route exact path="/jchecker2.0/instructors" component={EntranceInstructor} />
-        <Route exact path="/jchecker2.0/instructors/:token" component={SectionClassForInst} />
-        <Route exact path="/jchecker2.0/error" component={SectionError} />
+        <Route exact path="/jchecker2.1" component={Index} />
+        <Route exact path="/jchecker2.1/classes" component={EntranceClass} />
+        <Route exact path="/jchecker2.1/classes/:token" component={SectionClass} />
+        <Route exact path="/jchecker2.1/classes/:token/success" component={ResultProcess} />
+        <Route exact path="/jchecker2.1/classes/:token/success/details" component={ResultDetail} />
+        <Route exact path="/jchecker2.1/instructors" component={EntranceInstructor} />
+        <Route exact path="/jchecker2.1/instructors/results" component={SectionClassForInst} />
+        <Route exact path="/jchecker2.1/error" component={SectionError} />
 
-        <Route exact path="/jchecker2.0/tests" component={EntranceTest} />
-        <Route exact path="/jchecker2.0/tests/:token" component={SectionClassTest} />
+        <Route exact path="/jchecker2.1/tests" component={EntranceTest} />
+        <Route exact path="/jchecker2.1/tests/:token" component={SectionClassTest} />
 
-        <Redirect path="*" to="/jchecker2.0" />
+        <Redirect path="*" to="/jchecker2.1" />
       </Switch>
     </Router>
   );

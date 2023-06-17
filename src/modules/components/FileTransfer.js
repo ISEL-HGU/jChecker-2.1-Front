@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function FileTransfer (props) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const { t } = useTranslation();
     const classes = useStyles();
     const [file, setfile] = useState(null);
@@ -45,11 +46,12 @@ function FileTransfer (props) {
         const formData = new FormData();
         formData.append('file', file);
 
-        // return await axios.post('http://isel.lifove.net/api/grade2.0/execute', formData, {
-        return axios.post('/api/grade2.0/execute', formData, {
+        return await axios.post('http://isel.lifove.net/api/grade2.0/execute/details', formData, {
             params: {
                 studentNum: props.id,
+                studentEmail: props.email,
                 token: props.name,
+                feedbackLevel: props.feedbackLevel
             },
             
             headers: {
@@ -92,16 +94,32 @@ function FileTransfer (props) {
             <form onSubmit={upload} className={classes.form}>
                 <input accept="application/zip" type="file" onChange={fileChange} name="file" aria-labelledby = {t('file transfer')} />      
                 <div className={classes.wrapper}>
-                    <Button type="submit" 
-                            variant="contained" 
-                            color="secondary" 
-                            size="large" 
-                            startIcon={<CloudUpload />} 
-                            disabled={props.id.length !== 8 || disabled} 
-                            onClick={handleClick}
-                    >
-                        Upload
-                    </Button>
+                    {props.feedbackLevel === 3 &&
+                        <Button type="submit"
+                                variant="contained"
+                                color="secondary"
+                                size="large"
+                                startIcon={<CloudUpload />}
+                                disabled={props.id.length !== 8 || !emailRegex.test(props.email) || disabled}
+                                onClick={handleClick}
+                        >
+                            Upload
+                        </Button>
+                    }
+
+                    {props.feedbackLevel !== 3 &&
+                        <Button type="submit"
+                                variant="contained"
+                                color="secondary"
+                                size="large"
+                                startIcon={<CloudUpload />}
+                                disabled={props.id.length !== 8 || disabled}
+                                onClick={handleClick}
+                        >
+                            Upload
+                        </Button>
+                    }
+
                     {loading &&
                         <Backdrop className={classes.backdrop} open={loading}>
                             <CircularProgress color="inherit" />

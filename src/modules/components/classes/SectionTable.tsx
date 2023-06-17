@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxHeight: 18,
         borderRadius: 30,
         marginTop: theme.spacing(2),
-    },
+    }
 }));
 
 
@@ -294,8 +294,7 @@ export default function SectionTable(props: ClassroomInstTokenProps) {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, dataGroup.length - page * rowsPerPage);
 
     const getGradingData = async () : Promise<GradingResultProps[]> => {
-        //return await axios.get<GradingResultProps[]>('http://isel.lifove.net/api/grade2.0/', {
-        return await axios.get<GradingResultProps[]>('/api/grade2.0/', {
+        return await axios.get<GradingResultProps[]>('http://isel.lifove.net/api/grade2.0/', {
             params: {
                 itoken: props.itoken
             },

@@ -62,7 +62,7 @@ function AppBarView (props: Props) {
                         variant="h3"
                         underline="none"
                         color="inherit"
-                        href="/jchecker2.0"
+                        href="/jchecker2.1"
                     >
                         <img src="/assets/logo.png" alt="logo" className={classes.logo} />
 

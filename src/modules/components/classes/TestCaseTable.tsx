@@ -131,8 +131,7 @@ export default function TestCaseTable(props: RouteComponentProps<RouteParamsProp
     useEffect(() => {
         if (classroom === initial) {
             const getTestCaseData = async () : Promise<ClassroomOracle[]> => {
-                // return await axios.get<ClassroomOracle[]>('http://isel.lifove.net/api/token2.0/')
-                return await axios.get<ClassroomOracle[]>('/api/token2.0/')
+                return await axios.get<ClassroomOracle[]>('http://isel.lifove.net/api/token2.0/')
                     .then((response) =>{
                         return response.data
                     });
@@ -143,7 +142,7 @@ export default function TestCaseTable(props: RouteComponentProps<RouteParamsProp
                     // @ts-ignore
                     setClassroom(response.find(element => element.itoken === props.match.params.token) || initial);
                     if (response.find(element => element.itoken === props.match.params.token && element.oracle?.state !== false) === undefined) {
-                        props.history.push('/jchecker2.0');
+                        props.history.push('/jchecker2.1');
                         alert("조회 가능한 테스트 케이스가 없습니다.😅");
                     }
                 })

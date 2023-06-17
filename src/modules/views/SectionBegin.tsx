@@ -43,7 +43,7 @@ function SectionBegin(props: Props) {
                 {t('begin.getting start')}
             </Typographic>
             <Typographic color="inherit" align="center" variant="h5" className={classes.h5}>
-                <Link href="/jchecker2.0/classes" color="secondary">
+                <Link href="/jchecker2.1/classes" color="secondary">
                     {t('begin.enter token')}
                 </Link>
                     &nbsp;{t('begin.enter token rest')}<br /><br />
@@ -51,30 +51,6 @@ function SectionBegin(props: Props) {
             </Typographic>
         </SectionLayout>
     )
-
-
-    /*
-    return (
-        <section id="section-begin">
-            <SectionLayout backgroundClassName={classes.background}>
-                <img style={{ display: 'none' }} src={backgroundImage} alt="priority" />
-                <Typographic color="inherit" align="center" variant="h1" marked="center">
-                    {t('begin.getting start')}
-                </Typographic>
-                <Typographic color="inherit" align="center" variant="h5" className={classes.h5}>
-                    <Link href="/jchecker2.0/classes" color="secondary">
-                        {t('begin.enter token')}
-                    </Link>
-                    &nbsp;{t('begin.enter token rest')}<br /><br />
-                    {t('begin.enter generate contact')}
-                </Typographic>
-                <Link href="/jchecker2.0/tests" color="secondary">
-                    {t('begin.test token')}
-                </Link>
-            </SectionLayout>
-        </section>
-    );
-    */
 }
 
 

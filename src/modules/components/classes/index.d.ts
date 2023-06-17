@@ -13,6 +13,7 @@ export interface ClassroomProps {
     className: string,
     instructor: string,
     createDate: string,
+    feedbackLevel: number,
 }
 
 export interface ClassroomInstProps {
@@ -226,4 +227,27 @@ export interface GradingPolicyProps {
         deductPoint: number,
     },
     feedbackLevel: number,
+}
+
+export interface GradingFeedbackProps {
+    token: string,
+    studentNum: string,
+    first: {
+        line: string,
+        suspicious: number,
+        lineNum: number,
+        file: string
+    },
+    second: {
+        line: string,
+        suspicious: number,
+        lineNum: number,
+        file: string
+    },
+    third: {
+        line: string,
+        suspicious: number,
+        lineNum: number,
+        file: string
+    }
 }

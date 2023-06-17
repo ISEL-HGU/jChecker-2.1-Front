@@ -37,6 +37,7 @@ export default function SuperclassDialog(props: DialogRawInterfaceOrSuperClassPr
             for (let i = 0; i < props.initial.origins.length; i ++) {
                 array.push(`spc-${i}`)
             }
+            return array;
         }
         return ["spc-0"];
     });

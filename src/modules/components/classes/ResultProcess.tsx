@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 15,
     },
     moreButton: {
-        backgroundColor: '#81bdf4',
+        backgroundColor: 'rgba(129, 189, 244, 0.5)',
         maxHeight: 23,
         borderRadius: 30,
     },
@@ -96,7 +96,7 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
     const {t} = useTranslation();
 
     if (props.location.state === undefined) {
-        props.history.push('/jchecker2.0/error');
+        props.history.push('/jchecker2.1/error');
         return null;
     } else {
         const results = props.location.state as GradingResultProps;
@@ -108,6 +108,13 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
 
             const diagramUrl = baseUrl + className + '%2F' + studentNum + '%2Fdrawio.xml';
             window.open(diagramUrl, '_blank');
+        }
+
+        const handleDetail = () => {
+            props.history.push({
+                pathname: `${props.match.url}/details`,
+                state: results,
+            });
         }
 
         const existsInPolicy = {
@@ -140,7 +147,7 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
                                 underline="none"
                                 color="inherit"
                                 className={classesStyle.title}
-                                href="/jchecker2.0"
+                                href="/jchecker2.1"
                             >
                                 <img src="/assets/logo.png" alt="logo" className={classesStyle.logo}/>
                             </Link>
@@ -205,11 +212,20 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
                             <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
                                 <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
                                 (-{results.oracle!.deductedPoint}) {t('result.score.testcase')}
-                                <Typographic color="inherit" align="center" variant="body1">
-                                    {t('result.score.testcase.failed')} ▸ {results.oracle?.violationNumber.map((violation, index) => (
-                                    violation + "   "
-                                ))}
-                                </Typographic>
+                                {results.oracle?.violationNumber.length !== 0 &&
+                                    <Typographic color="inherit" align="center" variant="body1">
+                                        {t('result.score.testcase.failed')} ▸ {results.oracle?.violationNumber.map((violation, index) => (
+                                        violation + "   "
+                                    ))}
+                                    </Typographic>
+                                }
+                                {results.oracle?.checksumNumber.length !== 0 &&
+                                    <Typographic color="inherit" align="center" variant="body1">
+                                        {t('result.score.checksum.failed')} ▸ {results.oracle?.checksumNumber.map((violation, index) => (
+                                        violation + "   "
+                                    ))}
+                                    </Typographic>
+                                }
                             </Typographic>
                         }
 
@@ -335,201 +351,7 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
                                 underline="none"
                                 color="inherit"
                                 className={classesStyle.title}
-                                href="/jchecker2.0"
-                            >
-                                <img src="/assets/logo.png" alt="logo" className={classesStyle.logo}/>
-                            </Link>
-                        </Toolbar>
-                    </AppBar>
-                    <SectionLayout backgroundClassName={classesStyle.background} classes={classesLayout}>
-                        {}
-                        <img style={{display: 'none'}} src={backgroundImage} alt="prioirty"/>
-                        <Typographic color="inherit" align="center" variant="h2" marked="center"
-                                     className={classesStyle.h2}>
-                            {results.studentNum} _ {t('result.score.success')}
-                        </Typographic>
-
-                        {existsInPolicy.feedback &&
-                            <Typographic color="inherit" align="center" variant="h3">
-                                {existsInPolicy.feedback}
-                                {results.result} / {results.point}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.delay === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.delay!.deductedPoint}) {t('result.score.delay')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.count === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.count!.deductedPoint}) {t('result.score.count')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.classes === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.classes!.deductedPoint}) {t('result.score.class')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.methods === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error" /> &nbsp;
-                                (-{results.methods!.deductedPoint}) {t('result.score.method')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.compiled === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.compile!.deductedPoint}) {t('result.score.compile')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.inputs === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.oracle!.deductedPoint}) {t('result.score.testcase')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <Typographic color="inherit" align="center" variant="body1">
-                                    {t('result.score.testcase.failed')} ▶︎ {results.oracle?.violationNumber.map((violation, index) => (
-                                    violation + "   "
-                                ))}
-                                </Typographic>
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.packages === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.packages!.deductedPoint}) {t('result.score.package')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.custexc === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.customException!.deductedPoint}) {t('result.score.customexc')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.custstr === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.customStructure!.deductedPoint}) {t('result.score.customstr')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.interfaces === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.inheritInterface!.deductedPoint}) {t('result.score.interface')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.superclass === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.inheritSuper!.deductedPoint}) {t('result.score.superclass')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.overriding === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.overriding!.deductedPoint}) {t('result.score.overriding')}
-                            </Typographic>
-                        }
-
-                        {existsInPolicy.feedback && existsInPolicy.overloading === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.overloading!.deductedPoint}) {t('result.score.overloading')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.thread === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.thread!.deductedPoint}) {t('result.score.thread')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.javadoc === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.javadoc!.deductedPoint}) {t('result.score.javadoc')}
-                            </Typographic>
-                        }
-
-
-                        {existsInPolicy.feedback && existsInPolicy.encapsulation === false &&
-                            <Typographic color="inherit" align="left" variant="subtitle1" className={classesStyle.h6}>
-                                <PlaylistAddCheckRoundedIcon color="error"/> &nbsp;
-                                (-{results.encapsulation!.deductedPoint}) {t('result.score.encap')}
-                            </Typographic>
-                        }
-
-                        <Grid
-                            container
-                            spacing={6}
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                        >
-                            <Grid item>
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    size="large"
-                                    startIcon={<ArrowBackIosIcon/>}
-                                    onClick={() => props.history.goBack()}
-                                    className={classesStyle.goback}
-                                >
-                                    Back
-                                </Button>
-                            </Grid>
-                            {existsInPolicy.feedback &&
-                                <Grid item>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        size="large"
-                                        onClick={handleDiagram}
-                                        className={classesStyle.oopMore}
-                                    >
-                                        OOP MORE
-                                    </Button>
-                                </Grid>
-                            }
-                        </Grid>
-                    </SectionLayout>
-                    <AppFooter/>
-                </>
-
-            )
-        } else if (results.feedbackLevel === 0) {
-            return (
-                <>
-                    <AppBar position="fixed" style={{background: 'transparent', boxShadow: 'none'}}>
-                        <Toolbar className={classesStyle.toolbar}>
-                            <Link
-                                variant="h3"
-                                underline="none"
-                                color="inherit"
-                                className={classesStyle.title}
-                                href="/jchecker2.0"
+                                href="/jchecker2.1"
                             >
                                 <img src="/assets/logo.png" alt="logo" className={classesStyle.logo}/>
                             </Link>
@@ -598,16 +420,25 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
                                     variant="contained"
                                     color="secondary"
                                     size="small"
-                                    onClick={() => props.history.goBack()}
+                                    onClick={handleDetail}
                                     className={classesStyle.moreButton}
                                 >
                                     MORE
                                 </Button>
-                                <Typographic color="inherit" align="center" variant="body1">
-                                    ▶︎ {results.oracle?.violationNumber.map((violation, index) => (
-                                    violation + "  "
-                                ))}
-                                </Typographic>
+                                {results.oracle?.violationNumber.length !== 0 &&
+                                    <Typographic color="inherit" align="center" variant="body1">
+                                        {t('result.score.testcase.failed')} ▸ {results.oracle?.violationNumber.map((violation, index) => (
+                                        violation + "   "
+                                    ))}
+                                    </Typographic>
+                                }
+                                {results.oracle?.checksumNumber.length !== 0 &&
+                                    <Typographic color="inherit" align="center" variant="body1">
+                                        {t('result.score.checksum.failed')} ▸ {results.oracle?.checksumNumber.map((violation, index) => (
+                                        violation + "   "
+                                    ))}
+                                    </Typographic>
+                                }
                             </Typographic>
                         }
 
@@ -704,15 +535,6 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
                                 </Button>
                             </Grid>
                             {existsInPolicy.feedback &&
-                                ((existsInPolicy.count === false) ||
-                                    (existsInPolicy.classes === false) ||
-                                    (existsInPolicy.custexc === false) ||
-                                    (existsInPolicy.custstr === false) ||
-                                    (existsInPolicy.interfaces === false) ||
-                                    (existsInPolicy.superclass === false) ||
-                                    (existsInPolicy.overriding === false) ||
-                                    (existsInPolicy.overloading === false) ||
-                                    (existsInPolicy.encapsulation === false)) &&
                                 <Grid item>
                                     <Button
                                         variant="contained"
@@ -732,8 +554,7 @@ function ResultProcess(props: RouteComponentProps<RouteParamsProps>) {
 
             )
         }
-    }
-    ;
+    };
 }
 
 

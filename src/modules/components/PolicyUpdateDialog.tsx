@@ -195,8 +195,7 @@ export default function SelectCond(props: PolicyProps) {
 
     useEffect(() => {
         const currentPolicyState = async (): Promise<GradingPolicyProps[]> => {
-            //return await axios.get<GradingPolicyProps[]>('http://isel.lifove.net/api/token2.0/')
-            return await axios.get<GradingPolicyProps[]>('/api/token2.0/')
+            return await axios.get<GradingPolicyProps[]>('http://isel.lifove.net/api/token2.0/')
                 .then((response) => {
                     return response.data
                 });
@@ -426,8 +425,7 @@ export default function SelectCond(props: PolicyProps) {
     const handleSubmit = async () => {
         setLoading(true);
 
-        // await axios.post("http://isel.lifove.net/api/token2.0/update", JSON.stringify(policy, null, 2), {
-        axios.post("/api/token2.0/update", JSON.stringify(policy, null, 2), {
+        await axios.post("http://isel.lifove.net/api/token2.0/update", JSON.stringify(policy, null, 2), {
             headers: {"Content-Type": 'application/json'}
         }).then((res) => {
             setOpen(false);
